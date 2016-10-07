@@ -1,0 +1,9 @@
+# Node dependencies #
+#####################
+node_modules
+
+# Mac #
+########
+._*
+*.DS_Store
+

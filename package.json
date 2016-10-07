@@ -1,0 +1,16 @@
+{
+  "name": "Spotify Express",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ljbuza/spotify_express.git"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "express": "~4.13.3",
+    "https": "~1.0.0",
+    "nodemon": "~1.10.2",
+    "pug": "^2.0.0-beta6",
+    "restify": "~4.1.1"
+  }
+}
