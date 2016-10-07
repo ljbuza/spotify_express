@@ -2,5 +2,17 @@ html
 
   head
     title=title
-    link(rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
-  body!=body 
+    link(rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  body
+    div.row
+      div.col-md-6.col-md-offset-1
+        h1 Spotification
+        form.form-inline(action='/results' method='post')
+          div.form-group
+            label(for='artistSearch') Search
+              input.form-control(type='text' name='artistSearch' placeholder='artist...')
+            button.btn.btn-sm.btn-primary(type='submit') Go!
+    div.row
+      div.col-md-6.col-md-offset-1(style='margin-top:20px;')
+        dl.dl-horizontal
+          content!=content

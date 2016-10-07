@@ -32,14 +32,7 @@ app.set('port', 8080);
 app.set('view-engine', 'pug');
 
 app.get('/', function(req, res) {
-    let html = `<div class="col-md-6 col-md-offset-1" style="margin-top:20px;">
-                <h1>Spotification</h1>
-                <form action="/results" class="form-inline" method="post">
-                <label for="artistSearch">Search: </label>
-                <input type="text" name="artistSearch" placeholder="artist..." />
-                <button type="submit" class="btn btn-sm btn-primary">Go!</button>
-                </form><div>`;
-    res.render('index.pug', {title: 'Spotification', 'body': html});
+    res.render('index.pug', {title: 'Spotification'});
     res.end();
 });
 
@@ -51,26 +44,22 @@ var myLogger = function(req, res, next) {
 
 app.post('/results', myLogger, function (req, res) {
     getArtist(req.body.artistSearch).then(function(result) {
-        let artists = JSON.parse(result);
-        let listEls = '';
-        let link = '';
+        let artists = JSON.parse(result),
+            listEls = '',
+            link = '';
+
         for (let artist of artists.artists.items) {
             if (artist.images[1] && artist.images[1].hasOwnProperty('url')) {link = artist.images[1].url;}
-            listEls += `<li><a href="${artist.external_urls.spotify}">${artist.name}</a>
-                        <img src="${link}" class="img-thumbnail" alt="artist image" /></li>`;
+            listEls += `<dt><img src="${link}" class="img-thumbnail" alt="artist image" /></dt>
+                        <dd><a href="${artist.external_urls.spotify}">${artist.name}</a></dd>`;
         }
-        let html = `<div class="col-md-6 col-md-offset-1" style="margin-top:20px;">
-                    <h1>Spotification</h1>
-                    <ul>
-                    ${listEls}
-                    </ul>
-                    </div>`;
-        res.render('index.pug', {title: 'Spotification', 'body': html});
+        if (artists.artists.items.length === 0) {listEls = '<dt>No Artists found.</dt>';}
+        res.render('index.pug', {title: 'Spotification', 'content': listEls});
         res.end();
     }).catch(function(err) {
         let sorry = 'Something went wrong. Sorry';
         let html = `<h1>${sorry}.</h1>`;
-        res.render('index.pug', {title: 'Spotification', 'body': html});
+        res.render('index.pug', {title: 'Spotification', 'content': html});
         res.end();
         console.log(`${sorry}:\n`, err);
     });
