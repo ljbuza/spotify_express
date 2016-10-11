@@ -1,5 +1,5 @@
 {
-  "name": "Spotify Express",
+  "name": "spotify_express",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -12,5 +12,12 @@
     "nodemon": "~1.10.2",
     "pug": "^2.0.0-beta6",
     "restify": "~4.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1"
   }
 }
